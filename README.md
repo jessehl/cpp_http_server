@@ -27,3 +27,9 @@ Can be removed to prevent the app from starting. Then, invoking:
 docker run -it -t netlib
 ```
 is helpful in inspecting the content of the container. 
+
+# Issues
+The program compiles, and even returns the response body, but http clients show:
+```
+client.BadStatusLine 
+```
