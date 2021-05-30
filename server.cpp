@@ -1,25 +1,39 @@
+#include <boost/network/protocol/http/server.hpp>
+#include <iostream>
+
 namespace http = boost::network::http;
 
-struct handler;
-typedef http::server<handler> http_server;
+struct hello_world;
+typedef http::server<hello_world> server;
 
-struct handler {
-    void operator() (http_server::request const &request,
-                     http_server::response &response) {
-        response = http_server::response::stock_reply(
-            http_server::response::ok, "Hello, world!");
-    }
-
-    void log(http_server::string_type const &info) {
-        std::cerr << "ERROR: " << info << '\n';
+struct hello_world {
+    void operator()(server::request const &request, server::connection_ptr connection) {
+        server::string_type ip = source(request);
+        unsigned int port = request.source_port;
+        std::ostringstream data;
+        data << "Hello, " << ip << ':' << port << '!';
+        connection->set_status(server::connection::ok);
+        connection->write(data.str());
     }
 };
 
-int main(int arg, char * argv[]) {
-    handler handler_;
-    http_server::options options(handler_);
-    http_server server_(
-        options.address("0.0.0.0")
-               .port("8000"));
-    server_.run();
+int main(int argc, char *argv[]) {
+
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " address port" << std::endl;
+        return 1;
+    }
+
+    try {
+        hello_world handler;
+        server::options options(handler);
+        server server_(options.address(argv[1]).port(argv[2]));
+        server_.run();
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+
+    return 0;
 }

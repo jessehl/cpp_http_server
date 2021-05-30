@@ -1,4 +1,3 @@
-
 # base image
 FROM ubuntu:latest
 
@@ -19,19 +18,19 @@ run make
 run make install
 RUN cd ../..
 
-
 # copy source files to the image
 COPY server.cpp server.cpp
 COPY CMakeLists.txt CMakeLists.txt
 
-# build and run our own source code
+# build and run our source code
+RUN mkdir docker_netlib && cd docker_netlib
 RUN mkdir build && cd build
 RUN cmake ..
+RUN cd ..
 RUN make 
 
-EXPOSE 8000
-
-CMD ["./server"]
+# run the app!
+# CMD ["./server 0.0.0.0 8000"]
 
 
 
