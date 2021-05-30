@@ -21,15 +21,16 @@ RUN make install
 
 
 # copy source files to the image
-RUN cd /
+WORKDIR /
 COPY server.cpp docker_netlib/server.cpp
 COPY CMakeLists.txt docker_netlib/CMakeLists.txt
 
 # build the executable
 RUN mkdir docker_netlib/build 
-RUN cd docker_netlib/build
+WORKDIR docker_netlib/build
 RUN cmake ..
 RUN make 
+
 
 # run the app!
 ENTRYPOINT ["./server"]
