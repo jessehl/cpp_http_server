@@ -11,7 +11,7 @@ struct hello_world {
         server::string_type ip = source(request);
         unsigned int port = request.source_port;
         std::ostringstream data;
-        data << "Hello, LyingDutch. " << ip << ':' << port << '!';
+        data << "Hello, " << ip << ':' << port << '!';
         connection->set_status(server::connection::ok);
         connection->write(data.str());
     }
