@@ -9,16 +9,17 @@ docker build . -t netlib
 ```
 
 ### Running the server app
-Once the `netlib` image is built, you can run the server app using:
+Once the `netlib` image is built, you can run the server:
 ```
-docker run -p 8000:8000 netlib
+docker run -p 8000:8000 netlib 0.0.0.0 8000
 ```
-Visiting [http://localhost:8000](http://localhost:8000) should get you to the server.
+Note: `0.0.0.0` and `8000` are the parameters for host and port, respectively. Visiting [http://localhost:8000](http://localhost:8000) should get you to the server!
 
 ### Debugging the build
-The last line in the Dockerfile:
+The last lines in the Dockerfile:
 ```Dockerfile
-ENTRYPOINT ["./server", "0.0.0.0", "8000"]
+ENTRYPOINT ["./server"]
+CMD ["0.0.0.0", "8000"]
 ```
 Can be removed to prevent the app from starting. Then, invoking:
 ```bash
