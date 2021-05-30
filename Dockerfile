@@ -31,7 +31,6 @@ WORKDIR docker_netlib/build
 RUN cmake ..
 RUN make 
 
-
 # run the app!
 ENTRYPOINT ["./server"]
 CMD ["0.0.0.0", "8000"]

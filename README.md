@@ -15,6 +15,7 @@ docker run -p 8000:8000 netlib 0.0.0.0 8000
 ```
 Note: `0.0.0.0` and `8000` are the parameters for host and port, respectively. Visiting [http://localhost:8000](http://localhost:8000) should get you to the server!
 
+
 ### Debugging the build
 The last lines in the Dockerfile:
 ```Dockerfile
