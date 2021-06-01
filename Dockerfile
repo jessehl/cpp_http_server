@@ -15,6 +15,7 @@ RUN git clone --recurse-submodules --depth 1 --branch 0.13-release https://githu
 # cmake will be installed in /usr/local.
 RUN mkdir cpp-netlib/cpp-netlib-build && cd cpp-netlib/cpp-netlib-build
 RUN cmake -DBOOST_ROOT=/usr/include/boost \
+-DCMAKE_CXX_FLAGS=-std=c++11 \
 ../cpp-netlib
 RUN make 
 RUN make install
@@ -28,7 +29,7 @@ COPY CMakeLists.txt docker_netlib/CMakeLists.txt
 # build the executable
 RUN mkdir docker_netlib/build 
 WORKDIR docker_netlib/build
-RUN cmake ..
+RUN cmake -DCMAKE_CXX_FLAGS=-std=c++11 .. 
 RUN make 
 
 # run the app!
