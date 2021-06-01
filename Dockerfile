@@ -29,7 +29,7 @@ COPY CMakeLists.txt docker_netlib/CMakeLists.txt
 # build the executable
 RUN mkdir docker_netlib/build 
 WORKDIR docker_netlib/build
-RUN cmake -DCMAKE_CXX_FLAGS=-std=c++11 .. 
+RUN cmake -DCMAKE_CXX_FLAGS=-std=c++11 -DBOOST_ROOT=/usr/include/boost .. 
 RUN make 
 
 # run the app!
