@@ -1,7 +1,7 @@
 # from: https://github.com/jolks/crow-template/tree/master/src
 
 cmake_minimum_required(VERSION 3.0)
-project (lockmanager )
+project (server )
 
 if(EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
