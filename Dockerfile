@@ -23,7 +23,6 @@ RUN cmake ..
 RUN make 
 
 # run the app!
-WORKDIR /
 ENTRYPOINT ["src/server"]
 
 
