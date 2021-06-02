@@ -1,35 +1,29 @@
 # netlib_docker
-A Docker image that runs cpp-netlib
+A Docker image that runs a c++ server using [crow-cpp](https://github.com/CrowCpp/crow/tree/master). 
 
 
 ### Building the image
-A Docker image named `netlib` can be built by invoking:
+A Docker image named `server` can be built by invoking:
 ```bash
-docker build . -t netlib
+docker build . -t server
 ```
 
 ### Running the server app
-Once the `netlib` image is built, you can run the server:
+Once the `server` image is built, you can run the server:
 ```
-docker run -p 8000:8000 netlib 0.0.0.0 8000
+docker run -p 8000:8000 server
 ```
-Note: `0.0.0.0` and `8000` are the parameters for host and port, respectively. Visiting [http://localhost:8000](http://localhost:8000) should get you to the server!
+Note: `8000` is the port you're running on. Visiting [http://localhost:8000](http://localhost:8000) should get you to the server!
 
 
 ### Debugging the build
-The last lines in the Dockerfile:
+The last line in the Dockerfile:
 ```Dockerfile
-ENTRYPOINT ["./server"]
-CMD ["0.0.0.0", "8000"]
+ENTRYPOINT ["src/server"]
 ```
 Can be removed to prevent the app from starting. Then, invoking:
 ```bash
-docker run -it -t netlib
+docker run -it -t server
 ```
 is helpful in inspecting the content of the container. 
 
-# Issues
-The program compiles, and even returns the response body, but http clients show:
-```
-client.BadStatusLine 
-```
