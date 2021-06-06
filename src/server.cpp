@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <boost/thread.hpp>
+#include "LMserver.h"
 
 std::vector<std::string> locks;
 boost::mutex searchLock;
