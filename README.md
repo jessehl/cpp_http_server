@@ -17,13 +17,9 @@ Note: `8000` is the port you're running on. Visiting [http://localhost:8000](htt
 
 
 ### Debugging the build
-The last line in the Dockerfile:
-```Dockerfile
-ENTRYPOINT ["src/server"]
-```
-Can be removed to prevent the app from starting. Then, invoking:
+Invoking:
 ```bash
-docker run -it -t server
+docker run -it server bash
 ```
 is helpful in inspecting the content of the container. 
 
